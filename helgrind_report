@@ -1,0 +1,65 @@
+==6214== Helgrind, a thread error detector
+==6214== Copyright (C) 2007-2017, and GNU GPL'd, by OpenWorks LLP et al.
+==6214== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==6214== Command: ./race
+==6214== 
+==6214== ---Thread-Announcement------------------------------------------
+==6214== 
+==6214== Thread #4 was created
+==6214==    at 0x49989F3: clone (clone.S:76)
+==6214==    by 0x49998EE: __clone_internal (clone-internal.c:83)
+==6214==    by 0x49076D8: create_thread (pthread_create.c:295)
+==6214==    by 0x49081FF: pthread_create@@GLIBC_2.34 (pthread_create.c:828)
+==6214==    by 0x4853767: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==6214==    by 0x1092C3: main (race.c:19)
+==6214== 
+==6214== ---Thread-Announcement------------------------------------------
+==6214== 
+==6214== Thread #3 was created
+==6214==    at 0x49989F3: clone (clone.S:76)
+==6214==    by 0x49998EE: __clone_internal (clone-internal.c:83)
+==6214==    by 0x49076D8: create_thread (pthread_create.c:295)
+==6214==    by 0x49081FF: pthread_create@@GLIBC_2.34 (pthread_create.c:828)
+==6214==    by 0x4853767: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==6214==    by 0x1092C3: main (race.c:19)
+==6214== 
+==6214== ----------------------------------------------------------------
+==6214== 
+==6214== Possible data race during read of size 8 at 0x10C018 by thread #4
+==6214== Locks held: none
+==6214==    at 0x10920B: square (race.c:9)
+==6214==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==6214==    by 0x4907AC2: start_thread (pthread_create.c:442)
+==6214==    by 0x4998A03: clone (clone.S:100)
+==6214== 
+==6214== This conflicts with a previous write of size 8 by thread #3
+==6214== Locks held: none
+==6214==    at 0x109215: square (race.c:9)
+==6214==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==6214==    by 0x4907AC2: start_thread (pthread_create.c:442)
+==6214==    by 0x4998A03: clone (clone.S:100)
+==6214==  Address 0x10c018 is 0 bytes inside data symbol "accum"
+==6214== 
+==6214== ----------------------------------------------------------------
+==6214== 
+==6214== Possible data race during write of size 8 at 0x10C018 by thread #4
+==6214== Locks held: none
+==6214==    at 0x109215: square (race.c:9)
+==6214==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==6214==    by 0x4907AC2: start_thread (pthread_create.c:442)
+==6214==    by 0x4998A03: clone (clone.S:100)
+==6214== 
+==6214== This conflicts with a previous write of size 8 by thread #3
+==6214== Locks held: none
+==6214==    at 0x109215: square (race.c:9)
+==6214==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==6214==    by 0x4907AC2: start_thread (pthread_create.c:442)
+==6214==    by 0x4998A03: clone (clone.S:100)
+==6214==  Address 0x10c018 is 0 bytes inside data symbol "accum"
+==6214== 
+2870
+==6214== 
+==6214== Use --history-level=approx or =none to gain increased speed, at
+==6214== the cost of reduced accuracy of conflicting-access information
+==6214== For lists of detected and suppressed errors, rerun with: -s
+==6214== ERROR SUMMARY: 36 errors from 2 contexts (suppressed: 344 from 20)
