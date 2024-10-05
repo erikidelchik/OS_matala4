@@ -127,32 +127,32 @@ int main(int argc,char* argv[]) {
     int seed;
 
     // Parse command line arguments
-//    int opt;
-//    while ((opt = getopt(argc, argv, "v:e:s:")) != -1) {
-//        switch (opt) {
-//            case 'v':
-//                vertices = atoi(optarg);
-//                break;
-//            case 'e':
-//                edges = atoi(optarg);
-//                break;
-//            case 's':
-//                seed = atoi(optarg);
-//                break;
-//            default:
-//                cerr << "Usage: " << argv[0] << " -v vertices -e edges -s seed" << endl;
-//                return 1;
-//        }
-//    }
-//    if (vertices <= 0 || edges <= 0) {
-//        cerr << "Number of vertices and edges must be positive." << endl;
-//        return 1;
-//    }
+   int opt;
+   while ((opt = getopt(argc, argv, "v:e:s:")) != -1) {
+       switch (opt) {
+           case 'v':
+               vertices = atoi(optarg);
+               break;
+           case 'e':
+               edges = atoi(optarg);
+               break;
+           case 's':
+               seed = atoi(optarg);
+               break;
+           default:
+               cerr << "Usage: " << argv[0] << " -v vertices -e edges -s seed" << endl;
+               return 1;
+       }
+   }
+   if (vertices <= 0 || edges <= 0) {
+       cerr << "Number of vertices and edges must be positive." << endl;
+       return 1;
+   }
 
 
 
     Graph g;
-    g.generateRandomGraph(4,6,2);
+    g.generateRandomGraph(vertices,edges,seed);
     g.checkIfExist();
 
 }
